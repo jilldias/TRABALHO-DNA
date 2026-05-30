@@ -29,10 +29,15 @@
  * operador seta:  s1->dna[i]  e equivalente a  (*s1).dna[i].
  * ------------------------------------------------------- */
 int distanciaHamming(Sequencia *s1, Sequencia *s2) {
-    /* TODO: implementar */
-    (void)s1;
-    (void)s2;
-    return -1;
+    if (s1->tamanho != s2->tamanho) {
+        return -1;
+    }
+
+    int distancia = 0;
+    for (int i = 0; i < s1->tamanho; i++) {
+        if (s1->dna[i] != s2->dna[i]) distancia++;
+    }
+    return distancia;
 }
 
 /* ---------- IMPLEMENTADO: menu de comparacao ---------- */

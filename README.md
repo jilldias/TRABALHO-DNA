@@ -57,7 +57,7 @@ O esqueleto vem com a estrutura pronta. Os locais que devem ser implementados pe
 | `cadastro.c` | `listarSequencias()` | ✅ Pronta |
 | `cadastro.c` | `buscarPorNome()` | ✅ Pronta |
 | `analise.c` | `calcularGC()` | ✅ Pronta (serve de exemplo) |
-| `analise.c` | **`contarBases()`** | ⚠️ **TODO** |
+| `analise.c` | **`contarBa|
 
 ### Parte II — Intermediário (2,0 pts)
 
@@ -66,7 +66,7 @@ O esqueleto vem com a estrutura pronta. Os locais que devem ser implementados pe
 | `analise.c` | **`buscarMotif()`** | ⚠️ **TODO** |
 | `ordenacao.c` | **`ordenarPorTamanho()`** | ⚠️ **TODO** |
 
-### Parte III — Avançado (2,0 pts)
+### Parte IIIses()`** | ⚠️ **TODO**  — Avançado (2,0 pts)
 
 | Arquivo | Função | Status |
 |---|---|---|

@@ -34,11 +34,16 @@
  *     banco[j + 1] = aux;
  * ---------------------------------------------------------------------- */
 void ordenarPorTamanho(Sequencia *banco, int total) {
-    /* TODO: implementar o algoritmo escolhido aqui */
-
-    /* Por enquanto so para o codigo compilar: */
-    (void)banco;
-    (void)total;
+    /* Bubble sort por tamanho crescente */
+    for (int i = 0; i < total - 1; i++) {
+        for (int j = 0; j < total - 1 - i; j++) {
+            if (banco[j].tamanho > banco[j + 1].tamanho) {
+                Sequencia aux = banco[j];
+                banco[j] = banco[j + 1];
+                banco[j + 1] = aux;
+            }
+        }
+    }
 }
 
 /* ---------- IMPLEMENTADO: menu de ordenacao ---------- */

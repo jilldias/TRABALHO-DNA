@@ -24,10 +24,18 @@
  * porque acessar um ponteiro NULL trava o programa!
  * ------------------------------------------------------- */
 void salvarArquivo(Sequencia *banco, int total) {
-    /* TODO: implementar */
-    (void)banco;
-    (void)total;
-    printf(">> [TODO] salvarArquivo ainda nao implementada.\n");
+    FILE *arq = fopen(ARQUIVO_PADRAO, "w");
+    if (arq == NULL) {
+        printf(">> Erro ao abrir arquivo para escrita: %s\n", ARQUIVO_PADRAO);
+        return;
+    }
+
+    for (int i = 0; i < total; i++) {
+        fprintf(arq, "%s\n", banco[i].nome);
+        fprintf(arq, "%s\n", banco[i].dna);
+    }
+    fclose(arq);
+    printf(">> %d sequencia(s) salvas em %s.\n", total, ARQUIVO_PADRAO);
 }
 
 /* ---------- TODO: implementar carregarArquivo ----------
@@ -57,8 +65,25 @@ void salvarArquivo(Sequencia *banco, int total) {
  *   6) Imprima quantas sequencias foram carregadas.
  * ------------------------------------------------------- */
 void carregarArquivo(Sequencia *banco, int *total) {
-    /* TODO: implementar */
-    (void)banco;
-    (void)total;
-    printf(">> [TODO] carregarArquivo ainda nao implementada.\n");
+    FILE *arq = fopen(ARQUIVO_PADRAO, "r");
+    if (arq == NULL) {
+        printf(">> Arquivo nao encontrado: %s\n", ARQUIVO_PADRAO);
+        return;
+    }
+
+    *total = 0;
+    while (*total < MAX_SEQ &&
+           fgets(banco[*total].nome, TAM_NOME, arq) != NULL &&
+           fgets(banco[*total].dna,  TAM_DNA,  arq) != NULL) {
+        /* remove o '\n' final */
+        banco[*total].nome[strcspn(banco[*total].nome, "\n")] = '\0';
+        banco[*total].dna [strcspn(banco[*total].dna,  "\n")] = '\0';
+        /* atualiza tamanho e GC */
+        banco[*total].tamanho = strlen(banco[*total].dna);
+        banco[*total].gc = calcularGC(banco[*total].dna,
+                                      banco[*total].tamanho);
+        (*total)++;
+    }
+    fclose(arq);
+    printf(">> %d sequencia(s) carregadas de %s.\n", *total, ARQUIVO_PADRAO);
 }

@@ -29,19 +29,22 @@ float calcularGC(char *dna, int tamanho) {
  *
  * Dica: use 'switch' para selecionar qual contador incrementar.
  * Atencao: lembre-se de zerar os contadores no inicio!
+ * 
  * ------------------------------------------------------------- */
 void contarBases(char *dna, int *qtdA, int *qtdT, int *qtdC, int *qtdG) {
-    /* TODO: zerar os 4 contadores usando os ponteiros */
-
-    /* TODO: percorrer a string dna ate encontrar '\0' */
-
-    /* TODO: para cada caractere, usar switch para incrementar
-     *       o contador correto via ponteiro (lembrar dos parenteses:
-     *       (*qtdA)++; e nao *qtdA++; - sao coisas diferentes!)    */
-
-    /* Por enquanto so para nao quebrar a compilacao: */
-    (void)dna;
+    /* Zera os contadores */
     *qtdA = *qtdT = *qtdC = *qtdG = 0;
+
+    /* Percorre a string dna ate o terminador '\0' */
+    for (int i = 0; dna[i] != '\0'; i++) {
+        switch (dna[i]) {
+            case 'A': (*qtdA)++; break;
+            case 'T': (*qtdT)++; break;
+            case 'C': (*qtdC)++; break;
+            case 'G': (*qtdG)++; break;
+            default: /* ignora caracteres invalidos */ break;
+        }
+    }
 }
 
 /* ---------- IMPLEMENTADO: menu de contagem de bases ---------- */
@@ -121,7 +124,20 @@ int buscarMotif(char *dna, char *padrao) {
 
     int qtd = 0;
 
-    /* TODO: implementar o laco principal de busca aqui */
+    /* Percorre todas as janelas possiveis */
+    for (int i = 0; i <= tamDna - tamPad; i++) {
+        int encontrou = 1;
+        for (int j = 0; j < tamPad; j++) {
+            if (dna[i + j] != padrao[j]) {
+                encontrou = 0;
+                break;
+            }
+        }
+        if (encontrou) {
+            printf("Posicao: %d\n", i + 1); /* base 1 */
+            qtd++;
+        }
+    }
 
     return qtd;
 }
